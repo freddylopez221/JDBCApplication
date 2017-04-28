@@ -26,8 +26,32 @@ public class JDBCApplication {
             Connection conn = DriverManager.getConnection(url);
             System.out.println ("Conexion Realizada");
             Statement st = conn.createStatement();
-            st.execute("insert into " + " itse (nombre,paterno,materna,sexo)" +
-            "values ('Fredyyyy','Lopezzzzz','Damiannnn','Masculinoooo')");
+            
+        st.execute("INSERT INTO " + " itse (nombre,paterno,materna,sexo)" +
+        "VALUES ('Fredyyyy','Lopezzzzz','Damiannnn','Masculinoooo')");
+            
+            
+        String sql = "DELETE FROM itse WHERE id = 2";
+        st.executeUpdate(sql);
+        
+        ResultSet rs = st.executeQuery("SELECT * FROM itse");
+         while ( rs.next() ) {
+            int id = rs.getInt("id");
+            String  nombre = rs.getString("nombre");
+            String  paterno = rs.getString("paterno");
+            String  materna = rs.getString("materna");
+            String  sexo = rs.getString("sexo");
+            
+            System.out.println( "ID = " + id );
+            System.out.println( "Nombre = " + nombre);
+            System.out.println( "Paterno = " + paterno);
+            System.out.println( "Materna = " + materna);
+            System.out.println( "Sexo = " + sexo);
+        
+                
+         
+     
+         }
             conn.close();
             
         }catch (ClassNotFoundException ex) {
